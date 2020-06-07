@@ -1,0 +1,37 @@
+name: docker build
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  REPOGITORY: kumassy/foo-bar-images
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login GitHub Registry
+      run: docker login docker.pkg.github.com -u owner -p ${{ secrets.GITHUB_TOKEN }}
+
+    - name: cuda image
+      run: |
+        # IMAGE_NAME=cuda:${GITHUB_REF#refs/heads/}
+        IMAGE_NAME=cuda:latest
+        docker build -t docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME} --file docker/cuda .
+        docker push docker.pkg.github.com/${REPOGITORY}/${IMAGE_NAME}
+
+    - name: python image
+      run: |
+        IMAGE_NAME=python:latest
+        docker build -t docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME} --file docker/python .
+        docker push docker.pkg.github.com/${REPOGITORY}/${IMAGE_NAME}
+
+    - name: cuda-python image
+      run: |
+        IMAGE_NAME=cuda-python:latest
+        docker build -t docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME} --file docker/cuda-python .
+        docker push docker.pkg.github.com/${REPOGITORY}/${IMAGE_NAME}

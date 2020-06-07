@@ -1,0 +1,3 @@
+- docker.pkg.github.com/kumassy/foo-bar-images/cuda:latest
+- docker.pkg.github.com/kumassy/foo-bar-images/python:latest
+- docker.pkg.github.com/kumassy/foo-bar-images/cuda-python:latest
