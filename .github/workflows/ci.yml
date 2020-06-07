@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  REPOGITORY: kumassy/foo-bar-images
+  REPOSITORY: kumassy/foo-bar-images
 
 jobs:
   build:
@@ -22,16 +22,16 @@ jobs:
         # IMAGE_NAME=cuda:${GITHUB_REF#refs/heads/}
         IMAGE_NAME=cuda:latest
         docker build -t docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME} --file docker/cuda .
-        docker push docker.pkg.github.com/${REPOGITORY}/${IMAGE_NAME}
+        docker push docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME}
 
     - name: python image
       run: |
         IMAGE_NAME=python:latest
         docker build -t docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME} --file docker/python .
-        docker push docker.pkg.github.com/${REPOGITORY}/${IMAGE_NAME}
+        docker push docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME}
 
     - name: cuda-python image
       run: |
         IMAGE_NAME=cuda-python:latest
         docker build -t docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME} --file docker/cuda-python .
-        docker push docker.pkg.github.com/${REPOGITORY}/${IMAGE_NAME}
+        docker push docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME}
