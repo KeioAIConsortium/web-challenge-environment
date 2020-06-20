@@ -1,4 +1,4 @@
-FROM docker.pkg.github.com/kumassy/foo-bar-images/cuda:latest
+FROM kumassy/foo-bar-images:cuda10.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 
