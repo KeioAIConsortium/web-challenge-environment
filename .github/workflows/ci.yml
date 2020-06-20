@@ -14,24 +14,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Login GitHub Registry
-      run: docker login docker.pkg.github.com -u owner -p ${{ secrets.GITHUB_TOKEN }}
+    - name: Login DockerHub
+      run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: cuda image
       run: |
-        # IMAGE_NAME=cuda:${GITHUB_REF#refs/heads/}
-        IMAGE_NAME=cuda:latest
-        docker build -t docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME} --file cuda/Dockerfile .
-        docker push docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME}
+        TAG=cuda10.0
+        docker build -t ${REPOSITORY}:${TAG} --file cuda/Dockerfile .
+        docker push ${REPOSITORY}:${TAG}
 
     - name: python image
       run: |
-        IMAGE_NAME=python:latest
-        docker build -t docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME} --file python/Dockerfile .
-        docker push docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME}
+        TAG=python3.7
+        docker build -t ${REPOSITORY}:${TAG} --file cuda/Dockerfile .
+        docker push ${REPOSITORY}:${TAG}
 
     - name: cuda-python image
       run: |
-        IMAGE_NAME=cuda-python:latest
-        docker build -t docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME} --file cuda-python/Dockerfile .
-        docker push docker.pkg.github.com/${REPOSITORY}/${IMAGE_NAME}
+        TAG=cuda10.0-python3.7
+        docker build -t ${REPOSITORY}:${TAG} --file cuda/Dockerfile .
+        docker push ${REPOSITORY}:${TAG}
