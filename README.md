@@ -64,7 +64,17 @@ Docker は *コンテナ* と呼ばれる軽量な仮想環境を作成・実行
 
 > Get Docker | Docker Documentation  
 > https://docs.docker.com/get-docker/
- 
+
+または、日本語訳があります
+
+> Docker の入手 - Docker-docs-ja 19.03 ドキュメント  
+> https://docs.docker.jp/get-docker.html
+
+Windows 10 Home をお使いの場合、 Docker Desktop for Windows を利用するのは難しい場合があります。
+Docker Toolbox の利用も検討してください: 
+
+> Install Docker Toolbox on Windows | Docker Documentation  
+> https://docs.docker.com/toolbox/toolbox_install_windows/
 
 # 貢献する
 Issue や Pull Request をお待ちしています。
