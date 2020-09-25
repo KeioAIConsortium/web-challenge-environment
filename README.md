@@ -31,23 +31,23 @@ print(pred(-5, 0))
 次のコマンドを実行して、隔離環境でコードを実行します
 
 ```
-$ docker run -v $PWD:/root -w /root kumassy/foo-bar-images:cuda10.0-python3.7 python3 predict.py
+$ docker run -v $PWD:/root -w /root keioaic/web-challenge-environment:cuda10.0-python3.7 python3 predict.py
 ```
 
 `-v $PWD:/root`: 作業ディレクトリ（ここでは predict.py があるディレクトリ）を、コンテナ内の `/root` にコピーします。  
 `-w /root`: コンテナ内の作業ディレクトリを `/root` に設定します。  
-`kumassy/foo-bar-images:cuda10.0-python3.7`: 実行環境を設定します。  
+`keioaic/web-challenge-environment:cuda10.0-python3.7`: 実行環境を設定します。  
 `python3 predict.py`: コンテナ内で実行するコマンドを設定します。
 
 # Docker イメージリスト
 以下の 3 つの Docker イメージが利用できます
 
-- kumassy/foo-bar-images:cuda10.0-python3.7
+- keioaic/web-challenge-environment:cuda10.0-python3.7
     - GPU ライブラリと Python 実行環境が含まれます
     - 現在、すべての問題はこちらをベースとした環境で実行されます
-- kumassy/foo-bar-images:cuda10.0
+- keioaic/web-challenge-environment:cuda10.0
     - GPU ライブラリのみが含まれます
-- kumassy/foo-bar-images:python3.7
+- keioaic/web-challenge-environment:python3.7
     - Python 実行環境のみが含まれます
 
 # 補足情報
@@ -83,5 +83,3 @@ Issue や Pull Request をお待ちしています。
 現在募集中の業務については、こちらをご覧ください: 
 
 > https://aic.keio.ac.jp/forStudents/manage
-
-# ライセンス

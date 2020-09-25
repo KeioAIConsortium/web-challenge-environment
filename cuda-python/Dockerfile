@@ -54,7 +54,7 @@
 # 8. By copying, installing or otherwise using Python 3.7.9, Licensee agrees
 #    to be bound by the terms and conditions of this License Agreement.
 
-FROM kumassy/foo-bar-images:cuda10.0
+FROM keioaic/web-challenge-environment:cuda10.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 

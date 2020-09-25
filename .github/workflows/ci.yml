@@ -8,7 +8,7 @@ on:
     - cron: "0 1 * * *"
 
 env:
-  REPOSITORY: kumassy/foo-bar-images
+  REPOSITORY: keioaic/web-challenge-environment
 
 jobs:
   build:
