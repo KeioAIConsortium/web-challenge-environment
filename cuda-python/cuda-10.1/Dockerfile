@@ -54,8 +54,7 @@
 # 8. By copying, installing or otherwise using Python 3.7.9, Licensee agrees
 #    to be bound by the terms and conditions of this License Agreement.
 
-# FROM keioaic/web-challenge-environment:cuda10.1
-FROM webch-test:cuda10.1
+FROM keioaic/web-challenge-environment:cuda10.1
 
 ENV DEBIAN_FRONTEND=noninteractive
 
