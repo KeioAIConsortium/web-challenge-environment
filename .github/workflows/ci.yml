@@ -3,39 +3,40 @@ name: docker build
 on:
   push:
     branches:
-      - master
-  schedule:
-    - cron: "0 1 * * *"
+      - hotfix/**
+  # schedule:
+  #   - cron: "0 1 * * *"
 
 env:
-  REPOSITORY: keioaic/web-challenge-environment
+  # REPOSITORY: keioaic/web-challenge-environment
+  REPOSITORY: webch-test
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Login DockerHub
-        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+      #   - uses: actions/checkout@v2
+      #   - name: Login DockerHub
+      #     run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: cuda image
         run: |
           TAG=cuda10.1
           VERSION=10.1
           docker build -t ${REPOSITORY}:${TAG} --file cuda/${VERSION}/Dockerfile .
-          docker push ${REPOSITORY}:${TAG}
 
       - name: python image
         run: |
           TAG=python3.7
           docker build -t ${REPOSITORY}:${TAG} .
-          docker push ${REPOSITORY}:${TAG}
         working-directory: python
 
       - name: cuda-python image
         run: |
           TAG=cuda10.1-python3.7
           docker build -t ${REPOSITORY}:${TAG} .
-          docker push ${REPOSITORY}:${TAG}
         working-directory: cuda-python/cuda-10.1
+      - name: list-built-image
+        run: |
+          dokcer image ls
