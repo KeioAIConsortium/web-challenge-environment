@@ -24,7 +24,8 @@ jobs:
         run: |
           TAG=cuda10.1
           VERSION=10.1
-          docker build -t ${REPOSITORY}:${TAG} --file cuda/${VERSION}/Dockerfile .
+          docker build -t ${REPOSITORY}:${TAG} .
+        working-directory: cuda/${VERSION}
 
       - name: python image
         run: |
