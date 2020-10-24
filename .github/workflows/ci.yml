@@ -21,18 +21,21 @@ jobs:
 
       - name: cuda image
         run: |
-          TAG=cuda10.0
-          docker build -t ${REPOSITORY}:${TAG} --file cuda/Dockerfile .
+          TAG=cuda10.1
+          VERSION=10.1
+          docker build -t ${REPOSITORY}:${TAG} --file cuda/${VERSION}/Dockerfile .
           docker push ${REPOSITORY}:${TAG}
 
       - name: python image
         run: |
           TAG=python3.7
-          docker build -t ${REPOSITORY}:${TAG} --file python/Dockerfile .
+          docker build -t ${REPOSITORY}:${TAG} .
           docker push ${REPOSITORY}:${TAG}
+        working-directory: python
 
       - name: cuda-python image
         run: |
-          TAG=cuda10.0-python3.7
-          docker build -t ${REPOSITORY}:${TAG} --file cuda-python/Dockerfile .
+          TAG=cuda10.1-python3.7
+          docker build -t ${REPOSITORY}:${TAG} .
           docker push ${REPOSITORY}:${TAG}
+        working-directory: cuda-python/cuda-10.1
