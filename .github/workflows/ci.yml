@@ -20,21 +20,13 @@ jobs:
       #   - name: Login DockerHub
       #     run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
       - uses: actions/checkout@v2
-
-      - name: ls
-        env:
-          dir: cuda
-        run: |
-          ls
-        working-directory: ${{env.dir}}
-
       - name: cuda image
         env:
           TAG: cuda10.1
           VERSION: "10.1"
-        working-directory: ./cuda/${VERSION}
         run: |
-          docker build -t ${REPOSITORY}:${TAG} .
+          docker build -t ${{env.REPOSITORY}}:${{env.TAG}} .
+        working-directory: ./cuda/${{env.VERSION}}
 
       - name: python image
         run: |
