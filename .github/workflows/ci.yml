@@ -29,16 +29,18 @@ jobs:
         working-directory: ./cuda/${{env.VERSION}}
 
       - name: python image
+        env:
+          TAG: python3.7
         run: |
-          TAG=python3.7
-          docker build -t ${REPOSITORY}:${TAG} .
-        working-directory: python
+          docker build -t ${{env.REPOSITORY}}:${{env.TAG}} .
+        working-directory: ./python
 
       - name: cuda-python image
+        env:
+          TAG: cuda10.1-python3.7
         run: |
-          TAG=cuda10.1-python3.7
-          docker build -t ${REPOSITORY}:${TAG} .
-          working-directory: cuda-python/cuda-10.1
+          docker build -t ${{env.REPOSITORY}}:${{env.TAG}} .
+        working-directory: ./cuda-python/cuda-10.1
       - name: list-built-image
         run: |
           dokcer image ls
