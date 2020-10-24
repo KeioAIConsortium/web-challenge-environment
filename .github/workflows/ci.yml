@@ -24,7 +24,7 @@ jobs:
       - name: cuda image
         env:
           TAG: cuda10.1
-          VERSION: 10.1
+          VERSION: "10.1"
         run: |
           docker build -t ${REPOSITORY}:${TAG} .
         working-directory: ./cuda/${VERSION}
